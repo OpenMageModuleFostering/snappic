@@ -1,0 +1,47 @@
+<?php
+/**
+ * This file is Copyright AltoLabs 2016.
+ *
+ * @category Mage
+ * @package  AltoLabs_Snappic
+ * @author   AltoLabs <hi@altolabs.co>
+ */
+
+$id = Mage::getModel('altolabs_snappic/connect')->getFacebookId();
+if (empty($id)) {
+    return;
+}
+
+$orderId = Mage::getSingleton('checkout/session')->getLastOrderId();
+if (!$orderId || intval($orderId) < 1) {
+    return;
+}
+
+/** @var Mage_Sales_Model_Order $order */
+$order = Mage::getModel('sales/order')->load($orderId);
+$total = round($order->getGrandTotal(), 2);
+$currency = Mage::app()->getStore()->getCurrentCurrencyCode();
+
+$items = $items = $order->getAllVisibleItems();
+$productIds = array();
+foreach ($items as $item) {
+    $productIds[] = "'snappic_" . $item->getProductId() . "'";
+}
+$productIds = implode(',', $productIds);
+?>
+<script>
+if (typeof fbq !== 'function') {
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','//connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '<?php echo($id); ?>');
+  fbq('track', 'PageView');
+}
+fbq('track', 'Purchase', {
+  value: '<?php echo($total); ?>',
+  currency: '<?php echo($currency); ?>',
+  content_type: 'product',
+  content_ids: [<?php echo($productIds); ?>],
+});
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=<?php echo($id); ?>&ev=Purchase&value=<?php echo($total); ?>&currency=<?php echo($currency); ?>&noscript=1"/>
+</noscript>
