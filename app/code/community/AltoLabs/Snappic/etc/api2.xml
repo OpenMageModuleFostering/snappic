@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * This file is Copyright AltoLabs 2016.
+ *
+ * @category Mage
+ * @package  AltoLabs_Snappic
+ * @author   AltoLabs <hi@altolabs.co>
+ */
+-->
+<config>
+    <api2>
+        <resource_groups>
+            <snappic translate="title">
+                <title>Snappic</title>
+                <sort_order>200</sort_order>
+            </snappic>
+        </resource_groups>
+        <resources>
+            <snappic_product translate="title">
+                <group>snappic</group>
+                <model>altolabs_snappic/api2_snappic_product</model>
+                <working_model>catalog/product</working_model>
+                <title>Catalog Product</title>
+                <sort_order>10</sort_order>
+                <privileges>
+                    <admin>
+                        <retrieve>1</retrieve>
+                    </admin>
+                </privileges>
+                <attributes>
+                    <id>Product ID</id>
+                    <title>Product Name</title>
+                    <description>Description</description>
+                    <price>Product Price</price>
+                    <handle>URL key</handle>
+                    <updated_at>Last updated date</updated_at>
+                    <variants>Product variants</variants>
+                    <images>Product images</images>
+                    <options>Product options</options>
+                </attributes>
+                <routes>
+                    <route_entity>
+                        <route>/snappic/products/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_entity_with_store>
+                        <route>/snappic/products/:id/store/:store</route>
+                        <action_type>entity</action_type>
+                    </route_entity_with_store>
+                    <route_collection>
+                        <route>/snappic/products</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                    <route_collection_with_store>
+                        <route>/snappic/products/store/:store</route>
+                        <action_type>collection</action_type>
+                    </route_collection_with_store>
+                </routes>
+                <versions>1</versions>
+            </snappic_product>
+            <snappic_store translate="title">
+                <group>snappic</group>
+                <model>altolabs_snappic/api2_snappic_store</model>
+                <title>Store Information</title>
+                <sort_order>20</sort_order>
+                <privileges>
+                    <admin>
+                        <retrieve>1</retrieve>
+                    </admin>
+                </privileges>
+                <attributes>
+                    <name>Name</name>
+                    <store_group_name>Store group name</store_group_name>
+                    <domain>Domain</domain>
+                    <iana_timezone>IANA timezone</iana_timezone>
+                    <currency>Currency</currency>
+                    <money_with_currency_format>Money with currency format</money_with_currency_format>
+                </attributes>
+                <routes>
+                    <route>
+                        <route>/snappic/stores/current</route>
+                        <action_type>entity</action_type>
+                    </route>
+                </routes>
+                <versions>1</versions>
+            </snappic_store>
+        </resources>
+    </api2>
+</config>

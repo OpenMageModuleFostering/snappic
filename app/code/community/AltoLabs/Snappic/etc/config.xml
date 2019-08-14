@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * This file is Copyright AltoLabs 2016.
+ *
+ * @category Mage
+ * @package  AltoLabs_Snappic
+ * @author   AltoLabs <hi@altolabs.co>
+ */
+-->
+<config>
+    <modules>
+        <AltoLabs_Snappic>
+            <version>1.0.0</version>
+        </AltoLabs_Snappic>
+    </modules>
+
+    <global>
+        <models>
+            <altolabs_snappic>
+                <class>AltoLabs_Snappic_Model</class>
+                <resourceModel>snappic_resource</resourceModel>
+            </altolabs_snappic>
+        </models>
+
+        <helpers>
+            <altolabs_snappic>
+                <class>AltoLabs_Snappic_Helper</class>
+            </altolabs_snappic>
+        </helpers>
+
+        <resources>
+            <snappic_setup>
+                <setup>
+                    <module>AltoLabs_Snappic</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </snappic_setup>
+        </resources>
+
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <altolabs_snappic_observer_order_place_after>
+                        <class>altolabs_snappic/observer</class>
+                        <method>onAfterOrderPlace</method>
+                    </altolabs_snappic_observer_order_place_after>
+                </observers>
+            </sales_order_place_after>
+        </events>
+    </global>
+
+    <frontend>
+        <routers>
+            <snappic>
+                <use>standard</use>
+                <args>
+                    <module>AltoLabs_Snappic</module>
+                    <frontName>shopinsta</frontName>
+                </args>
+            </snappic>
+        </routers>
+
+        <events>
+            <controller_action_predispatch_checkout_cart_add>
+                <observers>
+                    <altolabs_snappic_observer_checkout_cart_add>
+                        <class>altolabs_snappic/observer</class>
+                        <method>onAfterProductAddToCart</method>
+                    </altolabs_snappic_observer_checkout_cart_add>
+                </observers>
+            </controller_action_predispatch_checkout_cart_add>
+            <controller_action_predispatch>
+                <observers>
+                    <altolabs_snappic_observer_front_init_before>
+                        <class>altolabs_snappic/observer</class>
+                        <method>onControllerActionPredispatch</method>
+                    </altolabs_snappic_observer_front_init_before>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+
+        <layout>
+            <updates>
+                <snappic>
+                    <file>snappic.xml</file>
+                </snappic>
+            </updates>
+        </layout>
+    </frontend>
+
+    <adminhtml>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <altolabs_snappic_observer_admin_displayed>
+                        <class>altolabs_snappic/observer</class>
+                        <method>onAdminPageDisplayed</method>
+                    </altolabs_snappic_observer_admin_displayed>
+                </observers>
+            </controller_action_predispatch>
+
+            <catalog_product_save_after>
+                <observers>
+                    <altolabs_snappic_observer_product_after_save>
+                        <class>altolabs_snappic/observer</class>
+                        <method>onProductAfterSave</method>
+                    </altolabs_snappic_observer_product_after_save>
+                </observers>
+            </catalog_product_save_after>
+
+            <catalog_product_attribute_update_after>
+                <observers>
+                    <altolabs_snappic_observer_product_update_after>
+                        <class>altolabs_snappic/observer</class>
+                        <method>onProductAfterAttributeUpdate</method>
+                    </altolabs_snappic_observer_product_update_after>
+                </observers>
+            </catalog_product_attribute_update_after>
+
+            <catalog_product_delete_after>
+                <observers>
+                    <altolabs_snappic_observer_product_delete_after>
+                        <class>altolabs_snappic/observer</class>
+                        <method>onProductAfterDelete</method>
+                    </altolabs_snappic_observer_product_delete_after>
+                </observers>
+            </catalog_product_delete_after>
+        </events>
+    </adminhtml>
+
+    <phpunit>
+        <suite>
+            <modules>
+                <AltoLabs_Snappic/>
+            </modules>
+        </suite>
+    </phpunit>
+</config>

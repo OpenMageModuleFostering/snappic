@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * This file is Copyright AltoLabs 2016.
+ *
+ * @category Mage
+ * @package  AltoLabs_Snappic
+ * @author   AltoLabs <hi@altolabs.co>
+ */
+-->
+<config>
+    <tabs>
+        <snappic>
+            <label>Snappic</label>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+        </snappic>
+    </tabs>
+    <sections>
+        <snappic>
+            <label>Snappic</label>
+            <tab>snappic</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>110</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <general>
+                    <label>Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <comment><![CDATA[]]></comment>
+                    <fields>
+                        <facebook_pixel_id>
+                        <label>Facebook Pixel ID</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>20</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>0</show_in_store>
+                        </facebook_pixel_id>
+                    </fields>
+                </general>
+            </groups>
+        </snappic>
+    </sections>
+</config>

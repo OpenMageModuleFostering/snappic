@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/snappic",
+    "type": "magento-module",
+    "license": "MIT",
+    "homepage": "",
+    "description": "AltoLabs Snappic Extension.",
+    "authors": [
+    {
+        "name": "Edwin Hermawan",
+        "email": "edwin@altolabs.co"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
